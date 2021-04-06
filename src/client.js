@@ -8,7 +8,7 @@ const client = mozaik => {
 		statistic ( params ) {
 			return fetch(`${params.url}/api/measures/component?componentKey=${params.componentKey}&metrics=${params.stat.id}`)
 				.then(res => res.json());
-		}
+		},
 	}
 
 		return apiCalls;
