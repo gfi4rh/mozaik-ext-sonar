@@ -6,8 +6,10 @@ const client = mozaik => {
 	const apiCalls = {
 
 		statistic ( params ) {
-			return fetch(`${params.url}/api/measures/component?componentKey=${params.componentKey}&metrics=${params.stat.id}`)
-				.then(res => res.json());
+			return fetch(`${params.url}/api/measures/component?componentKey=${params.componentKey}&metrics=${params.stat.id}`,{
+				method : 'GET',
+				headers : {'Accept': 'application/json'}
+			}).then(res => res.json());
 		},
 	}
 
