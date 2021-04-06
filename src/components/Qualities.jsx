@@ -2,10 +2,9 @@ import React, { Component, PropTypes } from 'react'
 import Mozaik                          from 'mozaik/browser';
 import { ListenerMixin }               from 'reflux';
 import reactMixin                      from 'react-mixin';
-import Build                           from './Build.jsx';
 
 
-class Builds extends Component {
+class Qualities extends Component {
 
     constructor(props) {
         super(props);   
@@ -13,7 +12,7 @@ class Builds extends Component {
 
     render() {
 
-        const { jobs } = this.props;
+        const { url, componentKey, issues, metrics } = this.props
 
         return (
             <div>
@@ -23,16 +22,16 @@ class Builds extends Component {
                     </span>
                 </div>
                 <div className="widget__body">
-                    {jobs.map(e => <Build name={e.name} title={e.title}/>)}
+                    {issues.map(issue => <Statistic url={url} componentKey={componentKey} stat={issue}/>)}
                 </div>
             </div>
         );
     }
 }
 
-Builds.displayName = 'Builds';
+Qualities.displayName = 'Qualities';
 
-reactMixin(Builds.prototype, ListenerMixin);
-reactMixin(Builds.prototype, Mozaik.Mixin.ApiConsumer);
+reactMixin(Qualities.prototype, ListenerMixin);
+reactMixin(Qualities.prototype, Mozaik.Mixin.ApiConsumer);
 
-export default Builds;
+export default Qualities;
