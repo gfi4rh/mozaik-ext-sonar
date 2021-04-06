@@ -15,7 +15,7 @@ class Statistic extends Component {
 
     getApiRequest() {
 
-        const { url, componentKey, stat, history } = this.props;
+        const { url, componentKey, stat, gate } = this.props;
 
         return {
             id : `sonar.statistic.${stat.id}`,
@@ -23,21 +23,24 @@ class Statistic extends Component {
                 url : url,
                 componentKey : componentKey,
                 stat : stat,
-                history : history
+                history : gate
             }
         }
     }
 
     onApiData(statistic){
         this.setState({
-            statistic : null
+            statistic : statistic.history[0]
         })
     }
 
     render() {
+
+        const { statistic } = this.state;
+
         return (
-            <div className="widget__body">
-                STAT
+            <div className="sonar__statitic__line">
+                {statistic && statistic.value}
             </div>
         );
     }

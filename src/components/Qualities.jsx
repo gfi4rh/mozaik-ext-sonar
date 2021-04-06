@@ -24,6 +24,7 @@ class Qualities extends Component {
                 </div>
                 <div className="widget__body">
                     {issues.map(issue => <Statistic url={url} componentKey={componentKey} stat={issue}/>)}
+                    {metrics.map(metric => <Statistic url={url} componentKey={componentKey} stat={metric}/>)}
                 </div>
             </div>
         );
