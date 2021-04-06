@@ -8,7 +8,7 @@ const client = mozaik => {
 		statistic ( params ) {
 			mozaik.logger.info(chalk.yellow(`[sonar] calling sonar.statistic`));
 
-			return fetch(`${params.url}/api/measures/search_history?componentKey=${params.componentKey}&metrics=${params.stat.id}`,{
+			return fetch(`${params.url}/api/measures/search_history?component=${params.componentKey}&metrics=${params.stat.id}`,{
 				method : 'GET',
 				headers : {'Accept': 'application/json'}
 			}).then(res => res.json());
