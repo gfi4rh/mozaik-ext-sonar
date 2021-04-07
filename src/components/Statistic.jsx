@@ -41,11 +41,10 @@ class Statistic extends Component {
     render() {
 
         const { statistic } = this.state;
-        const { qualitygate } = this.props;
 
         return (
             <div className="sonar__statistic__stat">
-                {statistic && <div>{statistic.name} : {statistic.history[statistic.history.length - 1].value} &lt; {qualitygate.error}</div>}
+                {statistic && <div>{statistic.name} : {statistic.history[statistic.history.length - 1].value}</div>}
             </div>
         );
     }

@@ -5,15 +5,6 @@ const client = mozaik => {
 
 	const apiCalls = {
 
-		qualitygates ( params ) {
-			mozaik.logger.info(chalk.yellow(`[sonar] calling sonar.qualitygates`));
-
-			let url = `${params.url}/api/qualitygates/show?id=2&format=json`;
-			
-			return fetch(url)
-				.then(res => res.json().conditions)
-		},
-
 		statistic ( params ) {
 			mozaik.logger.info(chalk.yellow(`[sonar] calling sonar.statistic`));
 

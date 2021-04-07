@@ -9,39 +9,16 @@ class Qualities extends Component {
 
     constructor(props) {
         super(props);   
-        this.state = {
-            qualitygates : null
-        }
-    }
-
-    getApiRequest() {
-
-        const { url } = this.props;
-
-        return {
-            id : `sonar.qualitygates`,
-            params : {
-                url : url
-            }
-        }
-    }
-
-    onApiData(qualitygates){
-        this.setState({
-            qualitygates : qualitygates
-        })
     }
 
     render() {
 
         const { url, componentKey, issues, metrics } = this.props
-        const { qualitygates } = this.state;
 
         let transformIssues = issues.map(issue => <Statistic 
             url={url} 
             componentKey={componentKey} 
             stat={issue}
-            qualitygate={qualitygates && qualitygates.filter(qualitygate => qualitygate.metric == issues.id)[0]}
             />)
 
         let transformMetrics = metrics.map(metric => <Statistic 

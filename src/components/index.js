@@ -1,4 +1,4 @@
-import Qualities from './QUalities.jsx';
+import Qualities from './Qualities.jsx';
 
 export default {
     Qualities
