@@ -23,7 +23,7 @@ class Statistic extends Component {
                 url : url,
                 componentKey : componentKey,
                 stat : stat,
-                history : gate
+                gate : gate
             }
         }
     }
