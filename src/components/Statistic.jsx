@@ -34,7 +34,7 @@ class Statistic extends Component {
             statistic : {
                 id : stat.id,
                 name : stat.name,
-                history : statistic.measures[0].history
+                history : statistic.history
             }
         })
     }

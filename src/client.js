@@ -12,7 +12,7 @@ const client = mozaik => {
 			return fetch(`${url}&ps=0`)
 			.then(res => res.json())
 			.then(json => fetch(`${url}&ps=${json.paging.total}`))
-			.then(res => res.json())
+			.then(res => { history : res.json().measures[0].history})
 		},
 	}
 
