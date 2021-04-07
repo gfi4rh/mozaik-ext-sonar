@@ -22,7 +22,7 @@ class Qualities extends Component {
                         <span className="widget__header__subject">{this.props.title}</span>
                     </span>
                 </div>
-                <div className="widget__body">
+                <div className="widget__body sonar__statistic__container">
                     <div className="sonar__statistic__line">
                         {issues.map(issue => <Statistic url={url} componentKey={componentKey} stat={issue}/>)}
                     </div>
