@@ -44,7 +44,7 @@ class Statistic extends Component {
         const { statistic } = this.state;
 
         return (
-            <div className="sonar__statistic__line">
+            <div className="sonar__statistic__stat">
                 {statistic && <div>{statistic.name} : {statistic.history[statistic.history.length - 1].value}</div>}
             </div>
         );
