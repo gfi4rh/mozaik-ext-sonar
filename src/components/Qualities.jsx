@@ -23,8 +23,13 @@ class Qualities extends Component {
                     </span>
                 </div>
                 <div className="widget__body">
-                    {issues.map(issue => <Statistic url={url} componentKey={componentKey} stat={issue}/>)}
-                    {metrics.map(metric => <Statistic url={url} componentKey={componentKey} stat={metric}/>)}
+                    <div className="sonar__statistic__line">
+                        {issues.map(issue => <Statistic url={url} componentKey={componentKey} stat={issue}/>)}
+                    </div>
+                    <div className="sonar__statistic__line">
+                        {metrics.map(metric => <Statistic url={url} componentKey={componentKey} stat={metric}/>)}
+                    </div>
+                    
                 </div>
             </div>
         );
