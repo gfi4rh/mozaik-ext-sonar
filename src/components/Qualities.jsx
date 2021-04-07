@@ -48,6 +48,7 @@ class Qualities extends Component {
             url={url} 
             componentKey={componentKey} 
             stat={metric}
+            qualitygate={qualitygates && qualitygates.filter(qualitygate => qualitygate.metric == metric.id)[0]}
             />)
 
         return (
