@@ -29,8 +29,13 @@ class Statistic extends Component {
     }
 
     onApiData(statistic){
+        const { stat } = this.props;
         this.setState({
-            statistic : statistic.history[0]
+            statistic : {
+                id : stat.id,
+                name : stat.name,
+                history : statistic.measures[0].history
+            }
         })
     }
 
@@ -40,7 +45,7 @@ class Statistic extends Component {
 
         return (
             <div className="sonar__statitic__line">
-                {statistic && statistic.value}
+                {statistic && statistic.history[statistic.history.length - 1].value}
             </div>
         );
     }
