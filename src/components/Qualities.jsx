@@ -41,7 +41,7 @@ class Qualities extends Component {
             url={url} 
             componentKey={componentKey} 
             stat={issue}
-            qualitygate={qualitygates && qualitygates.filter(qualitygate => qualitygate.metric == issues.id)[0]}
+            qualitygate={qualitygates && qualitygates.filter(qualitygate => qualitygate.metric == issue.id)[0]}
             />)
 
         let transformMetrics = metrics.map(metric => <Statistic 
