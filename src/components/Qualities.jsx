@@ -9,11 +9,46 @@ class Qualities extends Component {
 
     constructor(props) {
         super(props);   
+        this.state = {
+            qualitygates : null
+        }
+    }
+
+    getApiRequest() {
+
+        const { url } = this.props;
+
+        return {
+            id : `sonar.qualitygates`,
+            params : {
+                url : url
+            }
+        }
+    }
+
+    onApiData(qualitygates){
+        this.setState({
+            qualitygates : qualitygates
+        })
     }
 
     render() {
 
         const { url, componentKey, issues, metrics } = this.props
+        const { qualitygates } = this.state;
+
+        let transformIssues = issues.map(issue => <Statistic 
+            url={url} 
+            componentKey={componentKey} 
+            stat={issue}
+            qualitygate={qualitygates && qualitygates.filter(qualitygate => qualitygate.metric == issues.id)[0]}
+            />)
+
+        let transformMetrics = metrics.map(metric => <Statistic 
+            url={url} 
+            componentKey={componentKey} 
+            stat={metric}
+            />)
 
         return (
             <div>
@@ -24,10 +59,10 @@ class Qualities extends Component {
                 </div>
                 <div className="widget__body sonar__statistic__container">
                     <div className="sonar__statistic__line">
-                        {issues.map(issue => <Statistic url={url} componentKey={componentKey} stat={issue}/>)}
+                        {transformIssues}
                     </div>
                     <div className="sonar__statistic__line">
-                        {metrics.map(metric => <Statistic url={url} componentKey={componentKey} stat={metric}/>)}
+                        {transformMetrics}
                     </div>
                     
                 </div>

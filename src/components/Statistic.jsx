@@ -15,15 +15,14 @@ class Statistic extends Component {
 
     getApiRequest() {
 
-        const { url, componentKey, stat, gate } = this.props;
+        const { url, componentKey, stat } = this.props;
 
         return {
             id : `sonar.statistic.${stat.id}`,
             params : {
                 url : url,
                 componentKey : componentKey,
-                stat : stat,
-                gate : gate
+                stat : stat
             }
         }
     }
@@ -42,10 +41,11 @@ class Statistic extends Component {
     render() {
 
         const { statistic } = this.state;
+        const { qualitygate } = this.props;
 
         return (
             <div className="sonar__statistic__stat">
-                {statistic && <div>{statistic.name} : {statistic.history[statistic.history.length - 1].value}</div>}
+                {statistic && <div>{statistic.name} : {statistic.history[statistic.history.length - 1].value} &lt; {qualitygate.error}</div>}
             </div>
         );
     }
