@@ -45,7 +45,7 @@ class Statistic extends Component {
 
         return (
             <div className="sonar__statitic__line">
-                {statistic && statistic.history[statistic.history.length - 1].value}
+                {statistic && <div>{statistic.name} : {statistic.history[statistic.history.length - 1].value}</div>}
             </div>
         );
     }
