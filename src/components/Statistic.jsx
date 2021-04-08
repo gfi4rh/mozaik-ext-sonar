@@ -81,8 +81,8 @@ class Statistic extends Component {
                             {statistic.history[statistic.history.length - 1].value}
                         </div>
                         <div className="sonar__statistic__informations">
-                            {evolution}
                             {gate}
+                            {evolution}
                         </div>
                     </div>
                 </div>
