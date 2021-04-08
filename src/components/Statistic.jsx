@@ -48,12 +48,13 @@ class Statistic extends Component {
 
         let node = null
         let gate = null
-        let evolution = null;
-        let current = statistic.history[statistic.history.length - 1].value
-        let previous = statistic.history[statistic.history.length -2].value
-            
-
+        let evolution = null
+        
         if(statistic){
+            
+            let current = statistic.history[statistic.history.length - 1].value
+            let previous = statistic.history[statistic.history.length -2].value
+
             if(qualitygate){
                 gate = (
                     <div className="sonar__statistic__gate">
