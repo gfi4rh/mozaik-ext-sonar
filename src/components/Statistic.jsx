@@ -82,10 +82,13 @@ class Statistic extends Component {
             switch(statistic.id){
                 case "sqale_index" : 
                     value =  `${ current === 0 ? '':`${Math.floor(current/60/8)} j`} ${(current/60)%8 == 0 ? '' :`${(current/60)%8} h`} `
+                    break
                 case "duplicated_lines_density" :
                     value = current+'%'
+                    break
                 default :
                     value = current
+                    break
             } 
             
 
