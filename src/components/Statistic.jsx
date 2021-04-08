@@ -50,6 +50,7 @@ class Statistic extends Component {
         let gate = null
         let evolution = null
         let style = null
+        let value = null
         
         if(statistic){
 
@@ -66,7 +67,7 @@ class Statistic extends Component {
 
                 gate = (
                     <div className="sonar__statistic__gate">
-                        &lt; {qualitygate.error}
+                        &lt; {statistic.id === "duplicated_lines_density" ? qualitygate.error+"%" : qualitygate.error}
                     </div>
                 )
                 if(current > previous){
@@ -77,6 +78,15 @@ class Statistic extends Component {
                     evolution = (<div className="sonar__statistic__evolution"><Equal/></div>)
                 }
             }
+
+            switch(statistic.id){
+                case "sqale_index" : 
+                    value =  `${ current === 0 ? '':`${Math.floor(current/60/8)} j`} ${(current/60)%8 == 0 ? '' :`${(current/60)%8} h`} `
+                case "duplicated_lines_density" :
+                    value = current+'%'
+                default :
+                    value = current
+            } 
             
 
             node = (
@@ -86,7 +96,7 @@ class Statistic extends Component {
                     </div>
                     <div className="sonar__statistic__content">
                         <div style={style} className="sonar__statistic__value">
-                            {statistic.history[statistic.history.length - 1].value}
+                            {value}
                         </div>
                         <div className="sonar__statistic__informations">
                             {gate}
