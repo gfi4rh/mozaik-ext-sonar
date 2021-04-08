@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Mozaik                          from 'mozaik/browser';
 import { ListenerMixin }               from 'reflux';
 import reactMixin                      from 'react-mixin';
+import { Welcome }                     from './Forms.jsx';
 
 
 class Statistic extends Component {
@@ -64,10 +65,13 @@ class Statistic extends Component {
                     <div className="sonar__statistic__name">
                         {statistic.name}
                     </div>
-                    <div className="sonar__statistic__value">
-                        {statistic.history[statistic.history.length - 1].value}
+                    <div className="sonar__statistic__content">
+                        <div className="sonar__statistic__value">
+                            {statistic.history[statistic.history.length - 1].value}
+                        </div>
+                        {gate}
+                        <Welcome name="Colin"/>
                     </div>
-                    {gate}
                 </div>
             );
         }
