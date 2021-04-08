@@ -53,9 +53,9 @@ class Statistic extends Component {
 
             if(qualitygate){
                 gate = (
-                    <span className="sonar__statistic__gate">
+                    <div className="sonar__statistic__gate">
                         &lt; {qualitygate.error}
-                    </span>
+                    </div>
                 );
             }
 
@@ -66,9 +66,8 @@ class Statistic extends Component {
                     </div>
                     <div className="sonar__statistic__value">
                         {statistic.history[statistic.history.length - 1].value}
-                        {gate}
                     </div>
-                    
+                    {gate}
                 </div>
             );
         }
