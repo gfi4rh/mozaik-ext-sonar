@@ -62,11 +62,11 @@ class Statistic extends Component {
                     </div>
                 )
                 if(current > previous){
-                    evolution = (<Arrow/>)
+                    evolution = (<div className="sonar__statistic__evolution"><Arrow/></div>)
                 }else if(current < previous){
-                    evolution = (<Arrow rotate={true} color="#27ae60"/>)
+                    evolution = (<div className="sonar__statistic__evolution"><Arrow rotate={true} color="#27ae60"/></div>)
                 } else {
-                    evolution = (<Equal/>)
+                    evolution = (<div className="sonar__statistic__evolution"><Equal/></div>)
                 }
             }
             
@@ -80,8 +80,8 @@ class Statistic extends Component {
                         <div className="sonar__statistic__value">
                             {statistic.history[statistic.history.length - 1].value}
                         </div>
-                        {gate}
-                        <div>
+                        <div className="sonar__statistic__informations">
+                            {gate}
                             {evolution}
                         </div>
                     </div>
