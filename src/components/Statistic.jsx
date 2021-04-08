@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Mozaik                          from 'mozaik/browser';
 import { ListenerMixin }               from 'reflux';
 import reactMixin                      from 'react-mixin';
-import { Welcome }                     from './Forms.jsx';
+import { Arrow, Equal }                     from './Shape.jsx';
 
 
 class Statistic extends Component {
@@ -70,7 +70,7 @@ class Statistic extends Component {
                             {statistic.history[statistic.history.length - 1].value}
                         </div>
                         {gate}
-                        <Welcome name="Colin"/>
+                        <Arrow/>
                     </div>
                 </div>
             );
