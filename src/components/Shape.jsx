@@ -23,10 +23,9 @@ class Arrow extends React.Component {
 class Equal extends React.Component {
   render(){
     const {width, height, color } = this.props
-    return (<svg width={width || "2vw"} height={height || "2vh"} viewBox="0 0 183 40" fill="none">
-    <path d="M0 3.33333C0 1.49238 1.63864 0 3.66 0H179.34C181.361 0 183 1.49238 183 3.33333V36.6667C183 38.5076 181.361 40 179.34 40H3.66C1.63863 40 0 38.5076 0 36.6667V3.33333Z" fill={color || "#B6B83D"}/>
-    </svg>
-    );
+    return (<svg width={width || "1vw"} height={height || "1vh"} viewBox="0 0 183 40" fill="none">
+    <path d="M0 3.33333C0 1.49238 1.63864 0 3.66 0H179.34C181.361 0 183 1.49238 183 3.33333V36.6667C183 38.5076 181.361 40 179.34 40H3.66C1.63863 40 0 38.5076 0 36.6667V3.33333Z" fill={color || "#3c6382"}/>
+    </svg>);
   }
 }
 

@@ -61,7 +61,6 @@ class Statistic extends Component {
                         &lt; {qualitygate.error}
                     </div>
                 )
-                console.log(current, previous)
                 if(current > previous){
                     evolution = (<Arrow/>)
                 }else if(current < previous){
