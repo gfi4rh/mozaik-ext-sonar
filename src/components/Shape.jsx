@@ -12,7 +12,7 @@ class Arrow extends React.Component {
       }
     }
 
-    return (<svg style={style} width={width || "50vw"} height={height || "50vh"} viewBox="0 0 200 264" fill="none">
+    return (<svg style={style} width={width || "2vw"} height={height || "2vh"} viewBox="0 0 200 264" fill="none">
     <rect x="64" y="159" width="72" height="105" rx="4" fill={color || "#A82020"}/>
     <path d="M97.353 4.96279C98.4824 2.84525 101.518 2.84525 102.647 4.96278L184.249 157.956C185.315 159.954 183.867 162.368 181.602 162.368H18.3976C16.1328 162.368 14.6848 159.954 15.7506 157.956L97.353 4.96279Z" fill="#A82020"/>
     </svg>
