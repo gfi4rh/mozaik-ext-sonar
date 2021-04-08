@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import Mozaik                          from 'mozaik/browser';
 import { ListenerMixin }               from 'reflux';
 import reactMixin                      from 'react-mixin';
@@ -43,9 +43,24 @@ class Statistic extends Component {
         const { statistic } = this.state;
         const { qualitygate } = this.props;
 
+        //{statistic && <div>{statistic.name} : {statistic.history[statistic.history.length - 1].value} {qualitygate && <div>&lt; {qualitygate.error}</div>}</div>}
+
+        let node = null;
+
+        if(statistic){
+            node = (
+                <div>
+                    {statistic.name}
+                </div>,
+                <div>
+                    {statistic.history[statistic.history.length - 1].value}
+                </div>
+            );
+        }
+
         return (
             <div className="sonar__statistic__stat">
-                {statistic && <div>{statistic.name} : {statistic.history[statistic.history.length - 1].value} {qualitygate && <div>&lt; {qualitygate.error}</div>}</div>}
+                {node}
             </div>
         );
     }
