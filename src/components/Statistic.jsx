@@ -49,6 +49,7 @@ class Statistic extends Component {
         let node = null
         let gate = null
         let evolution = null
+        let style = null
         
         if(statistic){
 
@@ -56,6 +57,13 @@ class Statistic extends Component {
             let previous = statistic.history[statistic.history.length -2].value
 
             if(qualitygate){
+
+                if(current < qualitygate.error){
+                    style = {color:"#27ae60"}
+                } else {
+                    style = {color:"#c0392b"}
+                }
+
                 gate = (
                     <div className="sonar__statistic__gate">
                         &lt; {qualitygate.error}
@@ -77,7 +85,7 @@ class Statistic extends Component {
                         {statistic.name}
                     </div>
                     <div className="sonar__statistic__content">
-                        <div className="sonar__statistic__value">
+                        <div style={style} className="sonar__statistic__value">
                             {statistic.history[statistic.history.length - 1].value}
                         </div>
                         <div className="sonar__statistic__informations">
