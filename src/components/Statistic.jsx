@@ -51,7 +51,7 @@ class Statistic extends Component {
         let evolution = null
         
         if(statistic){
-            
+
             let current = statistic.history[statistic.history.length - 1].value
             let previous = statistic.history[statistic.history.length -2].value
 
@@ -60,16 +60,17 @@ class Statistic extends Component {
                     <div className="sonar__statistic__gate">
                         &lt; {qualitygate.error}
                     </div>
-                );
+                )
+                console.log(current, previous)
+                if(current > previous){
+                    evolution = (<Arrow/>)
+                }else if(current < previous){
+                    evolution = (<Arrow rotate={true} color="#27ae60"/>)
+                } else {
+                    evolution = (<Equal/>)
+                }
             }
             
-            if(current > previous){
-                evolution = (<Arrow/>)
-            }else if(current < previous){
-                evolution = (<Arrow rotate={true} color="#27ae60"/>);
-            } else {
-                evolution = (<Equal/>);
-            }
 
             node = (
                 <div className="sonar__statistic__stat">
