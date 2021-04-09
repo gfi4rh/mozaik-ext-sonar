@@ -59,7 +59,7 @@ class Statistic extends Component {
 
             if(qualitygate){
 
-                if(current === 0 || current < qualitygate.error){
+                if(current <= qualitygate.error){
                     style = {color:"#27ae60"}
                 } else {
                     style = {color:"#c0392b"}
