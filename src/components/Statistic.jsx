@@ -54,12 +54,12 @@ class Statistic extends Component {
         
         if(statistic){
 
-            let current = statistic.history[statistic.history.length - 1].value
-            let previous = statistic.history[statistic.history.length -2].value
+            let current = parseInt(statistic.history[statistic.history.length - 1].value)
+            let previous = parseInt(statistic.history[statistic.history.length -2].value)
 
             if(qualitygate){
 
-                if(current < qualitygate.error){
+                if(current === 0 || current < qualitygate.error){
                     style = {color:"#27ae60"}
                 } else {
                     style = {color:"#c0392b"}
