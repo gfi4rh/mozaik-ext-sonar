@@ -19,7 +19,7 @@ class Statistic extends Component {
         const { url, componentKey, stat } = this.props;
 
         return {
-            id : `sonar.statistic.${stat.id}`,
+            id : `sonar.statistic.${componentKey.split(':')[1]}-${stat.id}`,
             params : {
                 url : url,
                 componentKey : componentKey,
@@ -80,9 +80,14 @@ class Statistic extends Component {
             }
 
             switch(statistic.id){
-                case "sqale_index" : 
-                    let hours = Math.floor(current/60)
-                    value =  `${ hours < 8 ? `${hours}h`:`${Math.floor(hours/8)}j`}`
+                case "sqale_index" :
+                    if(current < 60 ){
+                        value = current+"min"
+                    } else if(Math.floor(current/60) < 8){
+                        value = Math.floor(current/60)+"h"
+                    } else {
+                        value = Math.floor(current/60/8)+'d'
+                    }
                     break
                 case "duplicated_lines_density" :
                     value = current+'%'
