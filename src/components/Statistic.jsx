@@ -81,7 +81,8 @@ class Statistic extends Component {
 
             switch(statistic.id){
                 case "sqale_index" : 
-                    value =  `${ current === 0 ? '':`${Math.floor(current/60/8)} j`} ${(current/60)%8 == 0 ? '' :`${(current/60)%8} h`} `
+                    let hours = Math.floor(current/60)
+                    value =  `${ hours < 8 ? `${hours}h`:`${Math.floor(hours/8)}j`}`
                     break
                 case "duplicated_lines_density" :
                     value = current+'%'
