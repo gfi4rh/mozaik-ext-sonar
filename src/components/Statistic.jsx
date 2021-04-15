@@ -71,7 +71,7 @@ class Statistic extends Component {
                     </div>
                 )
                 if(current > previous){
-                    evolution = (<div className="sonar__statistic__evolution"><Arrow/></div>)
+                    evolution = (<div className="sonar__statistic__evolution"><Arrow color="#c0392b"/></div>)
                 }else if(current < previous){
                     evolution = (<div className="sonar__statistic__evolution"><Arrow rotate={true} color="#27ae60"/></div>)
                 } else {
