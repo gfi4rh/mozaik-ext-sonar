@@ -3,7 +3,7 @@ import chalk from 'chalk';
 
 const client = mozaik => {
 
-	const apiCalls = {
+	return {
 
 		qualitygates ( params ) {
 			mozaik.logger.info(chalk.yellow(`[sonar] calling sonar.qualitygates`));
@@ -13,6 +13,10 @@ const client = mozaik => {
 			return fetch(url)
 				.then(res => res.json())
 				.then(json => json.conditions)
+				.error(err => {
+					console.log(err)
+					return {err : err}
+				})
 		},
 
 		statistic ( params ) {
@@ -25,10 +29,12 @@ const client = mozaik => {
 				.then(json => fetch(`${url}&ps=${json.paging.total}`))
 				.then(res => res.json())
 				.then(json => json.measures[0])
+				.error(err => {
+					console.log(err)
+					return {err : err}
+				})
 		},
 	}
-
-		return apiCalls;
 };
 
 export default client;
