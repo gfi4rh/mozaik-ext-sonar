@@ -43,7 +43,6 @@ class Statistic extends Component {
 
         const { statistic } = this.state;
         const { qualitygate, type, url, componentKey } = this.props;
-        console.log(type, url, componentKey)
 
         let node = null
         let gate = null
@@ -98,7 +97,7 @@ class Statistic extends Component {
             
 
             node = (
-                <div className="sonar__statistic__stat">
+                <div className="sonar__statistic__stat" onClick={e => window.open(`${url}/${type}?id=${componentKey}&resolved=false`)}>
                     <div className="sonar__statistic__name">
                         {statistic.name}
                     </div>
