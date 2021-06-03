@@ -42,9 +42,8 @@ class Statistic extends Component {
     render() {
 
         const { statistic } = this.state;
-        const { qualitygate } = this.props;
-
-        //{statistic && <div>{statistic.name} : {statistic.history[statistic.history.length - 1].value} {qualitygate && <div>&lt; {qualitygate.error}</div>}</div>}
+        const { qualitygate, type, url, componentKey } = this.props;
+        console.log(type, url, componentKey)
 
         let node = null
         let gate = null

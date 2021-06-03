@@ -38,6 +38,7 @@ class Qualities extends Component {
         const { qualitygates } = this.state;
 
         let transformIssues = issues.map(issue => <Statistic 
+            type="issues"
             url={url} 
             componentKey={componentKey} 
             stat={issue}
@@ -45,7 +46,8 @@ class Qualities extends Component {
             />)
 
         let transformMetrics = metrics.map(metric => <Statistic 
-            url={url} 
+            type="component_measures"
+            url={url}
             componentKey={componentKey} 
             stat={metric}
             qualitygate={qualitygates && qualitygates.filter(qualitygate => qualitygate.metric == metric.id)[0]}
