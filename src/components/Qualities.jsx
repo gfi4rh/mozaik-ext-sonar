@@ -10,7 +10,8 @@ class Qualities extends Component {
     constructor(props) {
         super(props);   
         this.state = {
-            qualitygates : null
+            qualitygates : null,
+            error : null
         }
     }
 
@@ -27,31 +28,57 @@ class Qualities extends Component {
     }
 
     onApiData(qualitygates){
-        this.setState({
-            qualitygates : qualitygates
-        })
+        if('message' in qualitygates){
+            this.setState({
+                error : "L'adresse du serveur SOnarQube est introuvable"
+            })
+        } else {
+            this.setState({
+                qualitygates : qualitygates
+            })
+        }
     }
 
     render() {
 
         const { url, componentKey, issues, metrics } = this.props
-        const { qualitygates } = this.state;
+        const { qualitygates, error } = this.state;
 
-        let transformIssues = issues.map(issue => <Statistic 
-            type="issues"
-            url={url} 
-            componentKey={componentKey} 
-            stat={issue}
-            qualitygate={qualitygates && qualitygates.filter(qualitygate => qualitygate.metric == issue.id)[0]}
-            />)
+        let node;
 
-        let transformMetrics = metrics.map(metric => <Statistic 
-            type="component_measures"
-            url={url}
-            componentKey={componentKey} 
-            stat={metric}
-            qualitygate={qualitygates && qualitygates.filter(qualitygate => qualitygate.metric == metric.id)[0]}
-            />)
+        if(!error){
+
+            let transformIssues = issues.map(issue => <Statistic 
+                type="issues"
+                url={url} 
+                componentKey={componentKey} 
+                stat={issue}
+                qualitygate={qualitygates && qualitygates.filter(qualitygate => qualitygate.metric == issue.id)[0]}
+                />)
+    
+            let transformMetrics = metrics.map(metric => <Statistic 
+                type="component_measures"
+                url={url}
+                componentKey={componentKey} 
+                stat={metric}
+                qualitygate={qualitygates && qualitygates.filter(qualitygate => qualitygate.metric == metric.id)[0]}
+                />)
+
+            node = (<div className="sonar__statistic__container">
+                        <div className="sonar__statistic__line">
+                            {transformIssues}
+                        </div>
+                        <div className="sonar__statistic__line">
+                            {transformMetrics}
+                        </div>
+                    </div>)
+
+        } else {
+
+            node (<div>{error}</div>)
+
+        }
+
 
         return (
             <div>
@@ -61,13 +88,7 @@ class Qualities extends Component {
                     </span>
                 </div>
                 <div className="widget__body sonar__statistic__container">
-                    <div className="sonar__statistic__line">
-                        {transformIssues}
-                    </div>
-                    <div className="sonar__statistic__line">
-                        {transformMetrics}
-                    </div>
-                    
+                    {node}
                 </div>
             </div>
         );
