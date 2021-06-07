@@ -30,7 +30,7 @@ class Qualities extends Component {
     onApiData(qualitygates){
         if('message' in qualitygates){
             this.setState({
-                error : "L'adresse du serveur SOnarQube est introuvable"
+                error : "L'adresse de l'hôte est inaccessible"
             })
         } else {
             this.setState({
@@ -75,7 +75,7 @@ class Qualities extends Component {
 
         } else {
 
-            node (<div>{error}</div>)
+            node = (<div className="sonar__statistic__error">{error}</div>)
 
         }
 
@@ -87,7 +87,7 @@ class Qualities extends Component {
                         <span className="widget__header__subject">{this.props.title}</span>
                     </span>
                 </div>
-                <div className="widget__body sonar__statistic__container">
+                <div className="widget__body">
                     {node}
                 </div>
             </div>
