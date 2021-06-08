@@ -51,7 +51,7 @@ class Statistic extends Component {
 
         let value
 
-        switch(statistic.id){
+        switch(id){
             case "sqale_index" :
                 if(current < 60 ){
                     value = current+"min"
