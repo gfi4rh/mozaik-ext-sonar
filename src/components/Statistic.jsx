@@ -47,7 +47,7 @@ class Statistic extends Component {
         }
     }
 
-    specialTypeOfStat(id) {
+    specialTypeOfStat(current, id) {
 
         let value
 
@@ -110,7 +110,7 @@ class Statistic extends Component {
             }
 
     
-            let value = this.specialTypeOfStat(statistic.id)
+            let value = this.specialTypeOfStat(current, statistic.id)
 
             node = (
                     <div className="sonar__statistic__content">
