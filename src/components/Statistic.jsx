@@ -17,7 +17,7 @@ class Statistic extends Component {
 
     getApiRequest() {
 
-        const { url, componentKey, stat } = this.props;
+        const { url, componentKey, stat } = this.props
 
         return {
             id : `sonar.statistic.${componentKey.split(':')[1]}-${stat.id}`,
@@ -47,6 +47,34 @@ class Statistic extends Component {
         }
     }
 
+    specialTypeOfStat(id) {
+
+        let value
+
+        switch(statistic.id){
+            case "sqale_index" :
+                if(current < 60 ){
+                    value = current+"min"
+                } else if(Math.floor(current/60) < 8){
+                    value = Math.floor(current/60)+"h"
+                } else {
+                    value = Math.floor(current/60/8)+'d'
+                }
+                break
+            case "duplicated_lines_density" :
+                value = current+'%'
+                break
+            default :
+                value = current
+                break
+        } 
+
+        return value
+
+    }
+
+
+
     render() {
 
         const { statistic, error } = this.state;
@@ -56,7 +84,6 @@ class Statistic extends Component {
         let gate
         let evolution
         let style
-        let value
         
         if(statistic){
 
@@ -65,11 +92,8 @@ class Statistic extends Component {
 
             if(qualitygate){
 
-                if(current <= qualitygate.error){
-                    style = {color:"#27ae60"}
-                } else {
-                    style = {color:"#c0392b"}
-                }
+
+                style = (current <= qualitygate.error) ? {color:"#27ae60"} : {color:"#c0392b"}
 
                 gate = (
                     <div className="sonar__statistic__gate">
@@ -85,30 +109,10 @@ class Statistic extends Component {
                 }
             }
 
-            switch(statistic.id){
-                case "sqale_index" :
-                    if(current < 60 ){
-                        value = current+"min"
-                    } else if(Math.floor(current/60) < 8){
-                        value = Math.floor(current/60)+"h"
-                    } else {
-                        value = Math.floor(current/60/8)+'d'
-                    }
-                    break
-                case "duplicated_lines_density" :
-                    value = current+'%'
-                    break
-                default :
-                    value = current
-                    break
-            } 
-            
+    
+            let value = this.specialTypeOfStat(statistic.id)
 
             node = (
-                <div className="sonar__statistic__stat" onClick={e => window.open(`${url}/${type}?id=${componentKey}&resolved=false`)}>
-                    <div className="sonar__statistic__name">
-                        {stat.name}
-                    </div>
                     <div className="sonar__statistic__content">
                         <div style={style} className="sonar__statistic__value">
                             {value}
@@ -118,22 +122,22 @@ class Statistic extends Component {
                             {evolution}
                         </div>
                     </div>
-                </div>
             );
         } else {
             node = (
-                <div className="sonar__statistic__stat" onClick={e => window.open(`${url}/${type}?id=${componentKey}&resolved=false`)}>
-                    <div className="sonar__statistic__name">
-                        {stat.name}
-                    </div>
                     <div className="sonar__statistic__content">
-                        <div className="sonar__statistic__error">{error}</div>
+                        <div className="sonar__statistic__center">{error}</div>
                     </div>
-                </div>
             )
         }
 
-        return node
+        return (
+        <div className="sonar__statistic__stat" onClick={e => window.open(`${url}/${type}?id=${componentKey}&resolved=false`)}>
+            <div className="sonar__statistic__name">
+                {stat.name}
+            </div>
+            {node}
+        </div>)
     }
 }
 
