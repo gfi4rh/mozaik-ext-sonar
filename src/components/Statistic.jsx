@@ -125,8 +125,8 @@ class Statistic extends Component {
             );
         } else {
             node = (
-                    <div className="sonar__statistic__content">
-                        <div className="sonar__statistic__center">{error}</div>
+                    <div className="sonar__statistic__center">
+                        {error}
                     </div>
             )
         }
