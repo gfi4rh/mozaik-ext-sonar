@@ -75,7 +75,7 @@ class Qualities extends Component {
 
         } else {
 
-            node = (<div className="sonar__statistic__error">{error}</div>)
+            node = (<div className="sonar__statistic__center sonar__statistic__error">{error}</div>)
 
         }
 

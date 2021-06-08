@@ -52,11 +52,11 @@ class Statistic extends Component {
         const { statistic, error } = this.state;
         const { qualitygate, type, url, componentKey, stat } = this.props;
 
-        let node = null
-        let gate = null
-        let evolution = null
-        let style = null
-        let value = null
+        let node
+        let gate
+        let evolution
+        let style
+        let value
         
         if(statistic){
 
@@ -126,7 +126,7 @@ class Statistic extends Component {
                     <div className="sonar__statistic__name">
                         {stat.name}
                     </div>
-                    <div className="sonar__statistic__content">{error}</div>
+                    <div className="sonar__statistic__center">{error}</div>
                 </div>
             )
         }
