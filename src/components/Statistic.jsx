@@ -126,7 +126,9 @@ class Statistic extends Component {
                     <div className="sonar__statistic__name">
                         {stat.name}
                     </div>
-                    <div className="sonar__statistic__center">{error}</div>
+                    <div className="sonar__statistic__content">
+                        <div className="sonar__statistic__error">{error}</div>
+                    </div>
                 </div>
             )
         }
