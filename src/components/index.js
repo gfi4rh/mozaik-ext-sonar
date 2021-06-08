@@ -1,8 +1,5 @@
-import Builds from './Builds.jsx';
-import Test from './Test.jsx';
-
+import Qualities from './Qualities.jsx';
 
 export default {
-    Builds,
-    Test
+    Qualities
 };

@@ -3,47 +3,32 @@ import chalk from 'chalk';
 
 const client = mozaik => {
 
-	const apiCalls = {
-		
-		build( name ){
+	return {
 
-			mozaik.logger.info(chalk.yellow(`[jenkins] calling jenkins.build`));
+		qualitygates ( params ) {
+			mozaik.logger.info(chalk.yellow(`[sonar] calling sonar.qualitygates`));
 
-			return fetch(`http://nrh-pic:8080/job/${name.name}/lastBuild/api/json`, {
-				method: 'GET',
-				headers: {
-					'Accept': 'application/json'
-				}
-			})
-			.then(res => res.json())
-			.then(json => { 
-					if(json.building){
-							mozaik.bus.changeInterval(`jenkins.build.${name.name}`, 5000);
-					} else {
-							const { apisPollInterval } = mozaik.config;
-							mozaik.bus.changeInterval(`jenkins.build.${name.name}`, apisPollInterval);
-					}
-					return json ;
-			});
+			let url = `${params.url}/api/qualitygates/show?id=2&format=json`;
+			
+			return fetch(url)
+				.then(res => res.json())
+				.then(json => json.conditions)
+				.catch(err => err)
 		},
 
-		test ( name ){
+		statistic ( params ) {
+			mozaik.logger.info(chalk.yellow(`[sonar] calling sonar.statistic`));
 
-			mozaik.logger.info(chalk.yellow(`[jenkins] calling jenkins.test`));
+			let url = `${params.url}/api/measures/search_history?component=${params.componentKey}&metrics=${params.stat.id}`;
 
-			return fetch(`http://nrh-pic:8080/job/${name.name}/lastBuild/api/json`,{
-				method : 'GET',
-				headers : {'Accept': 'application/json'}
-			})
-			.then(res => res.json())
-			.then(json => fetch(`http://nrh-pic:8080/job/${name.name}/${json.id}/allure/widgets/summary.json`,{
-				method : 'GET',
-				headers : {'Accept': 'application/json'}
-			})).then(res => res.json())
-		}
+			return fetch(`${url}&ps=0`)
+				.then(res => res.json())
+				.then(json => fetch(`${url}&ps=${json.paging.total}`))
+				.then(res => res.json())
+				.then(json => json.measures[0])
+				.catch(err => err)
+		},
 	}
-
-		return apiCalls;
 };
 
 export default client;
