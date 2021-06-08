@@ -10,7 +10,8 @@ class Statistic extends Component {
     constructor(props) {
         super(props);  
         this.state = {
-            statistic : null
+            statistic : null,
+            error : null
         }
     }
 
@@ -30,19 +31,26 @@ class Statistic extends Component {
 
     onApiData(statistic){
         const { stat } = this.props;
-        this.setState({
-            statistic : {
-                id : stat.id,
-                name : stat.name,
-                history : statistic.history
-            }
-        })
+
+        if(statistic){
+            this.setState({
+                statistic : {
+                    id : stat.id,
+                    name : stat.name,
+                    history : statistic.history
+                }
+            })
+        } else {
+            this.setState({
+                error : "Introuvable"
+            })
+        }
     }
 
     render() {
 
-        const { statistic } = this.state;
-        const { qualitygate, type, url, componentKey } = this.props;
+        const { statistic, error } = this.state;
+        const { qualitygate, type, url, componentKey, stat } = this.props;
 
         let node = null
         let gate = null
@@ -99,7 +107,7 @@ class Statistic extends Component {
             node = (
                 <div className="sonar__statistic__stat" onClick={e => window.open(`${url}/${type}?id=${componentKey}&resolved=false`)}>
                     <div className="sonar__statistic__name">
-                        {statistic.name}
+                        {stat.name}
                     </div>
                     <div className="sonar__statistic__content">
                         <div style={style} className="sonar__statistic__value">
@@ -112,6 +120,15 @@ class Statistic extends Component {
                     </div>
                 </div>
             );
+        } else {
+            node = (
+                <div className="sonar__statistic__stat" onClick={e => window.open(`${url}/${type}?id=${componentKey}&resolved=false`)}>
+                    <div className="sonar__statistic__name">
+                        {stat.name}
+                    </div>
+                    <div className="sonar__statistic__content">{error}</div>
+                </div>
+            )
         }
 
         return node
