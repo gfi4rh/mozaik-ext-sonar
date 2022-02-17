@@ -32,7 +32,7 @@ class Statistic extends Component {
     onApiData(statistic){
         const { stat } = this.props;
 
-        if('history' in statistic){
+        if(statistic && 'history' in statistic){
             this.setState({
                 statistic : {
                     id : stat.id,

@@ -28,7 +28,7 @@ class Qualities extends Component {
     }
 
     onApiData(qualitygates){
-        if('message' in qualitygates){
+        if(qualitygates && 'message' in qualitygates){
             this.setState({
                 error : "L'adresse de l'hôte est inaccessible"
             })

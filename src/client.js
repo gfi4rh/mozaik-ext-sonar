@@ -8,7 +8,7 @@ const client = mozaik => {
 		qualitygates ( params ) {
 			mozaik.logger.info(chalk.yellow(`[sonar] calling sonar.qualitygates`));
 
-			let url = `${params.url}/api/qualitygates/show?id=2&format=json`;
+			let url = `${params.url}/api/qualitygates/show?id=AWJCgOK86dyDOvZApxk8&format=json`;
 			
 			return fetch(url)
 				.then(res => res.json())
